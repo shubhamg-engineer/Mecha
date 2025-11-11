@@ -6,7 +6,7 @@ setInterval(() => {
   guide.style.opacity = guide.style.opacity === '0.7' ? '1' : '0.7';
 }, 4000);
 
-// Click
+// Click speech
 guide.onclick = () => {
   speech.innerHTML = 'At your service, Commander';
   speech.style.opacity = 1;
@@ -14,24 +14,16 @@ guide.onclick = () => {
 };
 
 // ENTER
-// ENTER PORTFOLIO — FINAL FIX
 document.getElementById('enter').onclick = () => {
-  // HIDE THE ENTIRE INTRO SCREEN
-  document.getElementById('intro').style.display = 'none';
-  
-  // UNLOCK SCROLL
+  document.getElementById('intro').classList.add('hidden');
   document.body.style.overflow = 'auto';
-  
-  // SMOOTH SCROLL TO PORTFOLIO
-  document.getElementById('portfolio').scrollIntoView({ behavior: 'smooth' });
-  
-  // SPEECH
+  window.scrollTo({ top: 0, behavior: 'smooth' });
   speech.innerHTML = 'Portfolio unlocked';
   speech.style.opacity = 1;
   setTimeout(() => speech.style.opacity = 0, 3000);
 };
 
-// KONAMI
+// KONAMI CODE
 let k = [];
 const seq = [38,38,40,40,37,39,37,39,66,65];
 document.addEventListener('keydown', e => {
