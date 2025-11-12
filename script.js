@@ -1,19 +1,17 @@
 const guide = document.getElementById('guide');
 const speech = document.getElementById('speech');
+const mecha = document.getElementById('mecha');
 
-// Blink
 setInterval(() => {
   guide.style.opacity = guide.style.opacity === '0.7' ? '1' : '0.7';
 }, 4000);
 
-// Click speech
 guide.onclick = () => {
   speech.innerHTML = 'At your service, Commander';
   speech.style.opacity = 1;
   setTimeout(() => speech.style.opacity = 0, 3000);
 };
 
-// ENTER
 document.getElementById('enter').onclick = () => {
   document.getElementById('intro').classList.add('hidden');
   document.body.style.overflow = 'auto';
@@ -23,7 +21,23 @@ document.getElementById('enter').onclick = () => {
   setTimeout(() => speech.style.opacity = 0, 3000);
 };
 
-// KONAMI CODE
+document.addEventListener('mousemove', (e) => {
+  const eyes = document.querySelectorAll('.eye');
+  eyes.forEach(eye => {
+    const rect = eye.getBoundingClientRect();
+    const ex = rect.left + rect.width / 2;
+    const ey = rect.top + rect.height / 2;
+    const angle = Math.atan2(e.clientY - ey, e.clientX - ex) * 180 / Math.PI;
+    eye.style.transform = `rotate(${angle}deg)`;
+  });
+});
+
+mecha.style.cursor = 'pointer';
+mecha.addEventListener('click', () => {
+  mecha.classList.toggle('battle');
+  new Audio('https://assets.mixkit.co/sfx/preview/mixkit-sci-fi-energy-surge-1265.mp3').play();
+});
+
 let k = [];
 const seq = [38,38,40,40,37,39,37,39,66,65];
 document.addEventListener('keydown', e => {
